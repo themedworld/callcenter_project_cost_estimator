@@ -5,7 +5,7 @@ import numpy as np
 import joblib
 
 # Charger le modèle
-pipeline = joblib.load("best_model_pipeline.joblib")
+pipeline = joblib.load("./call_center_project_cost_model_pipeline.joblib")
 
 app = FastAPI(
     title="Call Center Cost Prediction API",
