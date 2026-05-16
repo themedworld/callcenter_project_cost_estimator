@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import pandas as pd
 import numpy as np
 import joblib
+from fastapi.middleware.cors import CORSMiddleware
 
 # Charger le modèle
 pipeline = joblib.load("./call_center_project_cost_model_pipeline.joblib")
@@ -12,6 +13,14 @@ app = FastAPI(
     version="1.0"
 )
 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],        # ou ["https://ton-domaine.com"] en prod
+    allow_credentials=True,
+    allow_methods=["*"],        # autorise OPTIONS, POST, GET...
+    allow_headers=["*"],
+)
 # Colonnes attendues
 EXPECTED_COLS = [
     '0','1','2','3','4','5','8','9',
